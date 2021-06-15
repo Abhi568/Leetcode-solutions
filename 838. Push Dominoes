@@ -1,0 +1,64 @@
+class Solution:
+    def pushDominoes(self, dominoes: str) -> str:
+        
+#         COUNTR==EVEN
+#         COUNRR//2
+#         "R....L"
+#         "RRLLL"
+#         "RRRLLL"
+#         "R...L"
+#         "RRRRL"
+#         3//2=1
+#         "RR.LL"
+#         "RR.LL"
+        
+#         "....L"
+#         "LLLLL"
+#         "R....L"
+#         "LRRRR"
+ 
+        
+        dominoes=list(dominoes)
+        i=0
+        countOf_R=0
+        while(i<len(dominoes)):
+            if dominoes[i]=='.':
+                i+=1
+            elif dominoes[i]=='L':
+                j=i-1
+                countOf_L=0
+                if dominoes[j]=='r' :
+                    while(j>=0 and countOf_L!=countOf_R//2):
+                        dominoes[j]='l'
+                        j-=1
+                        countOf_L+=1
+                    if countOf_R%2!=0:
+                        dominoes[j]='.'
+                    countOf_R=0                    
+                else:
+                    while((dominoes[j]!='L' and dominoes[j]!='R') and j>=0):
+                        dominoes[j]='l'
+                        j-=1
+                i+=1
+            elif dominoes[i]=='R':
+                j=i+1
+                countOf_R=0
+                if (j<len(dominoes) and dominoes[j]!='L' and dominoes[j]!='R'):
+                    while(j<len(dominoes) and (dominoes[j]!='L' and dominoes[j]!='R')):
+                        dominoes[j]='r'
+                        j+=1
+                        i=j
+                        countOf_R+=1
+                else:
+                    i+=1
+        for i in range(len(dominoes)):
+            if dominoes[i]=='r':
+                dominoes[i]='R'
+            elif dominoes[i]=='l':
+                dominoes[i]='L'
+        return "".join(dominoes)
+        
+                    
+                        
+                    
+                    
