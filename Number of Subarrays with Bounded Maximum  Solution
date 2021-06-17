@@ -1,0 +1,19 @@
+class Solution:
+    def numSubarrayBoundedMax(self, nums: List[int], L: int, R: int) -> int:
+        res=0
+        window_count=0
+        left=0
+        right=0
+        while(right<len(nums)):
+            if nums[right]>=L and nums[right]<=R:
+                window_count=right-left+1
+                res=res+window_count
+            elif nums[right]>R:
+                window_count=0
+                left=right+1
+            elif nums[right]<L:
+                res=res+window_count
+      
+            
+            right=right+1
+        return res
