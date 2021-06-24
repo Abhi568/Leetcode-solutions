@@ -1,0 +1,61 @@
+class Solution:
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+
+#         [1,1,1,1]
+#         4//2
+#         j=0  3
+#         j=1  2
+#         [1,0,1]
+#         0 2
+ 
+#         [[1]]
+        for i in range(len(image)):
+            j=0
+            len1=len(image[i])
+            if len(image[i])==1:
+                if image[i][0]==1:
+                    image[i][0]=0
+                else:
+                    image[i][0]=1
+            else:
+                
+                while(j<len(image[i])//2):
+                    image[i][j],image[i][len1-1-j]=image[i][len1-1-j],image[i][j]
+                    if image[i][j]==1:
+                        image[i][j]=0
+                    else:
+                        image[i][j]=1
+                    if image[i][len1-1-j]==1:
+                        image[i][len1-1-j]=0
+                    else:
+                        image[i][len1-1-j]=1
+                    j+=1
+                if len(image[i])%2!=0:
+                    if image[i][len1//2]==0:
+                        image[i][len1//2]=1
+                    else:
+                        image[i][len1//2]=0  
+                    
+        return image
+        
+        
+        
+class Solution:
+    def flipAndInvertImage(self, A: List[List[int]]) -> List[List[int]]:
+        
+        col=len(A[0])
+        row=len(A)
+        l1=[[0 for i in range(col)] for i in range(row)]
+    
+        i=0
+        for c in range(col-1,-1,-1):
+            for r in range(row):
+                if A[r][c]==0:
+                    l1[r][col-1-c]=1
+                else:
+                    l1[r][col-1-c]=0
+
+            i=i+1
+        return l1
+                    
+        
