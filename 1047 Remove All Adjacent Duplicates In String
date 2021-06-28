@@ -1,0 +1,52 @@
+   class Solution:
+    def removeDuplicates(self, S: str) -> str:
+        stack=[]
+        find=False
+        stack.append(s[0])
+        i=1
+        while(i<len(s)):
+            if stack==[]:
+                stack.append(s[i])
+                i+=1
+            elif stack[-1]!=s[i] and find==False:
+                stack.append(s[i])
+                i+=1
+                
+            elif stack[-1]==s[i]:
+                find=True
+                stack.append(s[i])
+                i+=1
+            if find==True:
+                stack.pop()
+                stack.pop()
+                find=False
+        return ''.join(stack)
+        
+        
+  #2 nd Approach
+  
+  
+  class Solution:
+    def removeDuplicates(self, S: str) -> str:
+        if len(S)==1:
+            return S
+        
+        start=0;
+        start1=1
+        S=list(S)
+        s=S[:]
+        while(len(s)!=0 and start1<len(s)):
+            if s[start]==s[start1]:
+                del s[start]
+                del s[start1-1]
+                #print(s)
+                start=start-1
+                start1=start1-1
+            else:
+                start=start+1
+                start1=start1+1
+                #print(start,start1)
+            if start<0:
+                start=0
+                start1=1
+        return ''.join(s)
