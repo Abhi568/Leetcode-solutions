@@ -1,0 +1,14 @@
+    
+    def destCity(self, paths: List[List[str]]) -> str:
+        def destination(d,path):
+            if path in d:
+                return destination(d,d[path])
+            else:
+                return path
+        
+        
+        d={}
+        for path in paths:
+            d[path[0]]=path[1]
+        print(d)
+        return (destination(d,paths[0][0]))
