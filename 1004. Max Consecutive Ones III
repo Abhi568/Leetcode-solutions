@@ -3,8 +3,6 @@ class Solution:
         max_consecutive_ones=0
         count_zeroes=0
         start=0
-
-
         for end in range(start,len(nums)):
             if nums[end]==0:
                 count_zeroes+=1
