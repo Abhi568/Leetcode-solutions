@@ -1,0 +1,19 @@
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+            lac1,lca2=None,None
+            def lca(root):
+                if root==None:
+                    return None
+                if (root.val==p.val) or (root.val==q.val):
+                    return root
+                lac1=lca(root.left)
+                lca2=lca(root.right)
+                
+                if lac1!=None and lca2!=None:
+                    return root
+                elif lac1!=None:
+                    return lac1
+                else:
+                    return lca2          
+            return (lca(root))
+                
