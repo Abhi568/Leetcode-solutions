@@ -1,0 +1,16 @@
+class Solution:
+    def selfDividingNumbers(self, left: int, right: int) -> List[int]:
+        count=0
+        l=[]
+        # 4%2=0
+            # number=15
+        for number in range(left,right+1):
+            count=0
+            digits=str(number)
+            # '22'
+            for digit in digits:
+                if digit!='0' and number%int(digit)==0:
+                    count+=1
+            if count==len(digits):
+                l.append(number)
+        return l
