@@ -1,0 +1,14 @@
+from collections import OrderedDict
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        d=OrderedDict()
+        
+        for i in range(len(arr)):
+            d[i]=abs(x-arr[i])
+
+        l=sorted(d,key=lambda x:d[x])
+        l1=[]
+        for i in l:
+            if len(l1)<k:
+                l1.append(arr[i])
+        return sorted(l1)
