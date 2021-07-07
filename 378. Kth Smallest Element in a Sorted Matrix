@@ -1,0 +1,47 @@
+from heapq import heappop,heappush
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        # max_heap
+        # heap=[]
+        # for i in range(len(matrix)):
+        #     for j in range(len(matrix[0])):
+        #         heap.append(-1*matrix[i][j])
+        # max_heap=heap[:k]
+        # heapify(max_heap)
+        # n=10
+        # k=8
+        # for i in range(k,len(heap)):
+        #     if max_heap[0]<heap[i]:
+        #         heappop(max_heap)
+        #         heappush(max_heap,heap[i])
+        # return -1*max_heap[0]
+    
+#         Time complexity: O(n*n + (n*n-k)logn*n) 
+        
+        
+#         # Min heap
+#         Min_heap=[]
+#         for i in range(len(matrix)):
+#             for j in range(len(matrix[0])):
+#                 Min_heap.append(matrix[i][j])
+#         heapify(Min_heap)   
+        
+#         for i in range(k):
+#             ele=heappop(heap)
+#         return ele
+          # Time complexity: O(n*n + klog(n*n) 
+          
+        
+        heap=[]
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                heap.append(matrix[i][j])
+        heap.sort()
+        return heap[k-1]
+    
+# #        #Time complexity: O(n*n + (n*n)log(n*n)
+        
+    
+    
+            
+            
