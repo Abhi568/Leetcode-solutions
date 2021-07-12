@@ -1,0 +1,18 @@
+from sortedcontainers import SortedList
+class MedianFinder:
+
+    def __init__(self):
+        self.array=SortedList()
+      
+
+    def addNum(self, num: int) -> None:
+        self.array.add(num)
+
+    def findMedian(self) -> float:
+        
+
+        if len(self.array)%2!=0:
+            return self.array[len(self.array)//2]
+
+        else:
+            return (self.array[len(self.array)//2]+self.array[(len(self.array)//2)-1])/2
