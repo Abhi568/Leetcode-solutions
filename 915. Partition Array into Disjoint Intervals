@@ -1,0 +1,13 @@
+class Solution:
+    def partitionDisjoint(self, A: List[int]) -> int:
+        A1=[0]*len(A)
+        min1=float('inf')
+        for i in range(len(A)-1,-1,-1):
+            min1=min(A[i],min1)
+            A1[i]=min1
+        print(A1)
+        max1=float('-inf')
+        for i in range(0,len(A)-1):
+            max1=max(max1,A[i])
+            if max1<=A1[i+1]:
+                return i+1
