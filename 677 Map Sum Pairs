@@ -1,0 +1,25 @@
+class MapSum:
+
+    def __init__(self):
+        
+        self.string={}
+        self.contain={}
+
+    def insert(self, key: str, val: int) -> None: 
+        if key in self.contain:
+            for i in range(len(key)):
+                self.string[key[:i+1]]=self.string[key[:i+1]]-self.contain[key]+val
+        else:
+            for i in range(len(key)):
+                if key[:i+1] in self.string:
+                    self.string[key[:i+1]]+=val
+                else:
+                    self.string[key[:i+1]]=val
+        self.contain[key]=val
+
+
+    def sum(self, prefix: str) -> int:
+        if prefix in self.string:
+            return self.string[prefix]
+        return 0
+   
