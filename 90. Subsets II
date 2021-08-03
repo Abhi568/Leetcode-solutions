@@ -1,0 +1,55 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        list1=[]
+        new_res=[]
+        def subset(j):
+            new_res.append(list1[:])
+            if j==len(nums):
+                return
+           
+            for i in range(j,len(nums)):
+                if i!=j and nums[i]==nums[i-1]:
+                    continue
+                list1.append(nums[i])
+                subset(i+1)
+                list1.pop()
+        subset(0)
+        return new_res
+    
+    
+    
+        # 1) sort nums
+        # 2) store in new_res
+        # 3) sort new_res
+        # 4) check dupli
+        # 5) store list1
+        # 6) return list1
+        
+#         nums.sort()
+#         list1=[]
+#         new_res=[]
+#         def subset(j):
+#             new_res.append(list1[:])
+#             if j==len(nums):
+#                 return
+            
+#             for i in range(j,len(nums)):
+
+#                 list1.append(nums[i])
+#                 subset(i+1)
+#                 list1.pop()
+                
+#         subset(0)
+#         new_res.sort()
+#         list1=[]
+#         for i in range(len(new_res)-1):
+#             if new_res[i]!=new_res[i+1]:
+#                 list1.append(new_res[i])
+#         if list1[-1]!=new_res[-1]:
+#             list1.append(new_res[-1])
+#         return list1
+
+Time Complexity: O(2^N * N)
+Space Complexity : O(2^N)
+        
