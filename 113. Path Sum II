@@ -1,0 +1,22 @@
+class Solution:
+    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
+        returnList=[]
+        def leftToroot(root,count_sum,result):
+            if root==None:
+                return
+            if root.left==None and root.right==None:
+                result.append(root.val)
+                if count_sum+root.val==targetSum:
+                    returnList.append(result[:])
+                return
+        
+            result.append(root.val)
+            leftToroot(root.left,count_sum+root.val,result)
+            if root.left!=None:
+                result.pop()
+            leftToroot(root.right,count_sum+root.val,result)
+            if root.right!=None:
+                result.pop()
+                
+        leftToroot(root,0,[])
+        return returnList
