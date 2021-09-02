@@ -1,0 +1,25 @@
+class Solution:
+    def maxProduct(self, root: TreeNode) -> int:
+        def call(root,sum2):
+            nonlocal max1
+            if root==None:
+                return 0
+            
+            l=call(root.left,sum2)
+            max1=max(max1,l*(sum2-l))
+            r=call(root.right,sum2)
+            max1=max(max1,r*(sum2-r))
+            return l+r+root.val
+            
+        def traverse(root):
+            nonlocal sum2
+            if root==None:
+                return 
+            sum2=sum2+root.val
+            traverse(root.left)
+            traverse(root.right)
+          
+        max1,sum2=0,0
+        traverse(root)
+        l=call(root,sum2)
+        return (max1)%((10**9) + 7)
