@@ -1,0 +1,14 @@
+    def maxLength(self, arr: List[str]) -> int:
+        self.max1=float('-inf')
+        def call(s,i):
+            if len(s)==len(set(s)):
+                self.max1=max(self.max1,len(s))
+            else:
+                return 
+            for j in range(i,len(arr)):
+                call(s+arr[j],j+1)
+
+                    
+                    
+            return self.max1
+        return call("",0)
