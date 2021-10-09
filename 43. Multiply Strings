@@ -1,0 +1,24 @@
+class Solution(object):
+    def multiply(self, num1, num2):
+        d={'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
+        int1,int2=0,0
+        for s1 in num1:
+            int1=int1*10+d[s1]
+        for s2 in num2:
+            int2=int2*10+d[s2]
+            
+        return str(int1*int2)
+#         s="123"
+        
+#         int1=0
+        
+#         i=0, s[i]='1'
+#         int1=int1*10+d[s[i]]
+#         int1=0*10+1=0+1=>1
+        
+#         i=1 s[1]='2'
+#         int1=1*10+2=10+2=12
+        
+#         i=2 s[2]='3'
+#         int1=120+3=123
+        
