@@ -1,0 +1,60 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        # [5,7,7,8,8,8,10,11,12] 8//2=4
+        [5,7,7,8,8,10]
+        8
+        def callleft(nums):
+            start,end=0,len(nums)-1
+            
+            left=-1
+            while(start<=end):
+                
+                mid=(start+end)//2
+                # print(mid,left,right)
+                if nums[mid]==target:
+                    left=mid
+                    end=mid-1
+                elif nums[mid]>target:
+                    end=mid-1
+                    
+                elif nums[mid]<target:
+                    start=mid+1
+            return left
+        def callright(nums):
+            start,end=0,len(nums)-1
+            right=-1
+            while(start<=end):
+                mid=(start+end)//2
+                if nums[mid]==target:
+                    right=mid
+                    start=mid+1
+                elif nums[mid]>target:
+                    end=mid-1
+                elif nums[mid]<target:
+                    start=mid+1
+            return right
+                    
+            
+        len1=len(nums)
+        if len1==0 or (len1==1 and nums[0]!=target):
+            
+            return [-1,-1]
+        if nums[(len1-1)//2]==target:
+            left=callleft(nums)
+            right=callright(nums)
+            if left==-1 and right==-1:
+                return [(len1-1)//2,(len1-1)//2]
+            elif left==-1:
+                return [(len1-1)//2,right]
+            elif right==-1:
+                return [left,(len1-1)//2]
+            else:
+                return[left,right]
+            
+            
+        else:
+            left=callleft(nums)
+            right=callright(nums)
+            return [left,right]
+            
+            
