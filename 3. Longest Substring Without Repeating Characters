@@ -1,0 +1,17 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        left,right=0,0
+        d={}
+        max1=0
+        for char in s:
+            if char in d and left<d[char]:
+                left=d[char]
+            else:
+                max1=max(max1,right-left+1)
+            d[char]=right+1
+            right+=1
+        return max1
+#   
+#         abcaderfe
+
+        
