@@ -1,0 +1,31 @@
+from collections import deque
+class Solution(object):
+    def orangesRotting(self, grid):
+        rotten, fresh=deque(),set()
+        res=0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==2:
+                    rotten.append((i,j))
+                elif grid[i][j]==1:
+                    fresh.add((i,j))
+            
+        while(len(fresh)>0 and len(rotten)>0):
+            for _ in range(len(rotten)):
+                i,j=rotten.popleft()
+                for coor in ((i-1,j),(i+1,j),(i,j+1),(i,j-1)):
+                    if coor in fresh:
+                        fresh.remove(coor)
+
+                        rotten.append(coor)
+            res+=1
+        # print(fresh,rotten)
+        return -1 if fresh else res
+
+                
+
+        
+        
+    
+    
+        
