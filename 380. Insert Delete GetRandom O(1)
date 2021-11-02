@@ -1,0 +1,59 @@
+class RandomizedSet(object):
+
+#     [1,2,2,5,2,2,4,1]
+#     [i,i,i,i,d,i,i,d]
+    
+#     d[2]=2
+#     false
+#     d[5]=1
+#     d[4]=0
+#     index=1
+#     lv=5
+#     [4,5,2]
+#     index=0
+#     lv=4
+#     l[inde]=lv
+#     l.pop()
+#     d[lv]=index
+    
+    
+    
+    
+    
+    def __init__(self):
+        # self.count=0
+        self.d={}
+        # self.d=set()
+        self.stack=[]
+    def insert(self, val):
+        
+        if val not in self.d:
+            self.stack.append(val)
+            self.d[val]=len(self.stack)-1
+            return True
+        return False
+
+    def remove(self, val):
+        
+        if val in self.d:
+            index=self.d[val]
+            lastValue=self.stack[-1]
+            self.stack[index]=lastValue
+            self.stack.pop()
+            self.d[lastValue]=index
+            del self.d[val]
+            return True
+        return False
+        
+
+    def getRandom(self):
+        return random.choice(self.stack)
+        
+        
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
