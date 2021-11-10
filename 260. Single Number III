@@ -1,0 +1,26 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        xor=0
+        for i in nums:
+            xor^=i
+        # rmb=xor&(-xor)
+        rmb=0
+        c=0
+        # print(xor&(-xor))
+        while(True):
+            # print(rmb,rmb&1)
+            if (xor&1==1):
+                rmb=2**c
+                break;
+            else:
+                xor=xor>>1
+            c=c+1
+        a=0
+        b=0
+        for i in nums:
+            if (i&rmb!=0):
+                a=a^i
+            else:
+                b=b^i
+        return [a,b]
+    
