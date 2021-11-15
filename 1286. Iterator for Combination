@@ -1,0 +1,36 @@
+class CombinationIterator(object):
+
+    def __init__(self, char, comLen):
+        self.char=char
+        self.comLen=comLen
+        self.list_value=[]
+        self.subset("",0,self.list_value)
+        self.c=0
+        # print('l',self.l)
+    def subset(self,s,j,list_value):
+        if len(s)==self.comLen:
+            list_value.append(s[:])
+            return
+        for i in range(j,len(self.char)):
+            self.subset(s+self.char[i],i+1,list_value)
+
+    def next(self):
+        value=self.list_value[self.c]
+        self.c+=1
+        return value
+
+    def hasNext(self):
+        if (self.c<len(self.list_value)):
+            return True
+        return False
+# abc=
+# 2^n=2^3=8
+
+# ab
+# ac
+# bc
+
+# Your CombinationIterator object will be instantiated and called as such:
+# obj = CombinationIterator(characters, combinationLength)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
