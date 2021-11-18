@@ -1,0 +1,54 @@
+class Solution(object):
+    def uniquePaths(self, m, n):
+        #naive approach 
+        #SPACE : 0(2^(M+N))
+        #TIME  : 0(M*N) required by implicit recursive stack
+        
+        # def ways(i,j):
+        #     if i>=m or j>=n:
+        #         return 0
+        #     if i==m-1 and j==n-1:
+        #         return 1
+        #     return ways(i+1,j)+ways(i,j+1)
+        # return ways(0,0)
+        
+        #MEMOIZATION-
+        #SPACE : 0(M*N)
+        #TIME  : 0(M*N)
+        
+        paths=[[1]*n for i in range(m)] 
+        def ways(i,j):
+            if i>=m or j>=n:
+                return 0
+            if i==m-1 and j==n-1:
+                return 1
+            if paths[i][j]!=1:
+                return paths[i][j]
+            paths[i][j]=ways(i+1,j)+ways(i,j+1)
+            return paths[i][j]
+            
+        return ways(0,0)
+        
+        #TABULATION-
+        #SPACE : 0(M*N)
+        #TIME  : 0(M*N)
+        
+        # paths=[[1]*n for i in range(m)]      
+        # for i in range(1,m):
+        #     for j in range(1,n):
+        #         paths[i][j]=paths[i-1][j]+paths[i][j-1]
+        # return paths[-1][-1]
+        
+        #TABULATION WITH SPACE OPTIMIZATION-
+        #SPACE : 0(N)
+        #TIME  : 0(M*N)
+        
+        # pre=[1]*n
+        # curr=[1]*n
+        # for i in range(1,m):
+        #     for j in range(1,n):
+        #         curr[j]=curr[j-1]+pre[j]
+        #     curr,pre=pre,curr
+        # return max(curr[-1],pre[-1])
+        
+
