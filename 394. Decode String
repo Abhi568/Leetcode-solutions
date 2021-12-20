@@ -1,0 +1,40 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        
+        #"34[a23[sed]f]"
+        num=0
+        i=0
+        stack=[]
+        while(i<len(s)):
+            if (ord(s[i])<97 or ord(s[i])>122) and s[i]!='[' and s[i]!=']':
+                num=num*10+int(s[i])
+                if s[i+1]=='[':
+                    stack.append(num)
+            elif s[i]==']':
+                s1=""
+                while(stack[-1]!='['):
+                    s1=stack.pop()+s1
+                stack.pop()
+                num_val=stack.pop()
+                # print('num_val',num_val,s1)
+                s1=s1*num_val
+                stack.append(s1)
+            else:
+                stack.append(s[i])
+                num=0
+            i+=1
+
+        s1=""
+        while(stack!=[]):
+            s1=stack.pop()+s1
+        return s1            
+                
+                    
+                    
+                    
+            
+            
+                
+                
+            
+                
