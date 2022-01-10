@@ -1,0 +1,55 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        i=len(a)-1
+        j=len(b)-1
+        self.sum1=''
+        self.rem='0'
+        while(i>=0 and j>=0):
+            if a[i]=='1' and b[j]=='1':
+                if self.rem=='0':
+                    self.sum1='0'+self.sum1
+                else:
+                    self.sum1='1'+self.sum1
+                self.rem='1'
+            elif a[i]=='0' and b[j]=='0':
+                if self.rem=='0':
+                    self.sum1='0'+self.sum1
+                else:
+                    self.sum1='1'+self.sum1
+                self.rem='0'
+            else:
+                if self.rem=='0':
+                    self.sum1='1'+self.sum1
+                    self.rem='0'
+                else:
+                    self.sum1='0'+self.sum1
+                    self.rem='1'
+            i-=1
+            j-=1
+            
+        if (i>=0):
+            self.call(a,i)
+        else:
+            self.call(b,j)   
+        if self.rem!='0':
+            self.sum1=self.rem+self.sum1
+        return self.sum1
+        
+    def call(self,data,i):  
+        while(i>=0):
+            if data[i]=='1':
+                if self.rem=='1':
+                    self.sum1='0'+self.sum1
+                    self.rem='1'
+                else:
+                    self.sum1='1'+self.sum1
+                    self.rem='0'
+            else:
+                if self.rem=='0':
+                    self.sum1='0'+self.sum1
+                else:
+                    self.sum1='1'+self.sum1
+                self.rem='0'
+            i-=1
+            
+                            
