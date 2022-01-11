@@ -28,7 +28,7 @@ class Solution:
 #         self.val = val
 #         self.left = left
 #         self.right = right
-#O(N) space (no. of nodes, O(N) time
+# Space time complexit is (less than O(N)) <  (no. of nodes, O(N) time
 class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
         self.l=[]
