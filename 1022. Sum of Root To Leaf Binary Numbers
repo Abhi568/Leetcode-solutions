@@ -1,0 +1,56 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# O(N) time, O(1) space
+class Solution:
+    def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
+        self.sum_to_leaf=0
+        def sum(root,bitValues):
+            if root==None:
+                return
+            bitValues=bitValues<<1 | root.val
+            if root.left==None and root.right==None:
+                self.sum_to_leaf+=bitValues
+            sum(root.left,bitValues)
+            sum(root.right,bitValues)
+
+        sum(root,0)
+        return self.sum_to_leaf
+        
+        
+        
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+#O(N) space (no. of nodes, O(N) time
+class Solution:
+    def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
+        self.l=[]
+        def call(root,s):
+            if root==None:
+                return
+            if root.left==None and root.right==None:
+                self.l.append(s+str(root.val))
+                return
+            call(root.left,s+str(root.val))
+            call(root.right,s+str(root.val))
+            
+        call(root,"")
+        sum1=0
+        for char in self.l:
+            c=0
+            for j in range(len(char)-1,-1,-1):
+                sum1+=int(char[j])*(2**c)
+                c+=1
+        return sum1
+    
+    
+    
+    
+    
