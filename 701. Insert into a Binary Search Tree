@@ -1,0 +1,58 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# Recursive
+# Time  Complexity: O(N) for the worst case that the BST is a single chain, for a Balanced Binary Tree it would be O(logN)
+# Space Complexity: used by the function stack, the same as Time Complexity, from O(logN) to O(N)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        def bst(root,pre):
+            if root==None:
+                if val<pre.val:
+                    pre.left=TreeNode(val)
+                else:
+                    pre.right=TreeNode(val)
+                return 
+            if val<root.val:
+                bst(root.left,root)
+            else:
+                bst(root.right,root)
+            return root
+                
+        if root==None:
+            return TreeNode(val)
+        return bst(root,None)
+
+
+#Interative
+#Time  Complexity: O(N) for the worst case that the BST is a single chain, for a Balanced Binary Tree it would be O(logN)
+#Space Complexity: O(1)
+
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        head=root
+        pre=None
+        NodeValue=TreeNode(val)
+        if root==None:
+            return NodeValue
+        while(root!=None):
+            pre=root
+            if val<root.val:
+                root=root.left
+            else:
+                root=root.right
+        if val<pre.val:
+            pre.left=NodeValue
+        else:
+            pre.right=NodeValue
+        return head
