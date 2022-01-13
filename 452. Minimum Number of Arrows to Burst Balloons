@@ -1,0 +1,44 @@
+#Both solution of O(NLOGN) Time Complexity
+and 
+# O(1) Time Complexity
+
+class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        points=sorted(points,key=lambda x:x[1])
+        count,i=0,1
+        min1,max1=points[0][0],points[0][1]
+        while(i<len(points)):
+            if max1>=points[i][0]:
+                min1=max(min1,points[i][0])
+            else:
+                count+=1
+                min1,max1=points[i][0],points[i][1]
+            i+=1
+        return count+1
+    
+    # [1,6][2,8][7,12][10,16]
+    # # |---------|
+    #   x1                   |---------|
+    # # 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+    # #   |-----------|   |------------------|
+    #     x1'           |------------|
+    #     2,6=1
+    #     10,13-->11,13
+        
+# class Solution:
+#     def findMinArrowShots(self, points: List[List[int]]) -> int:
+#         points.sort()
+#         count,i=0,1
+#         x1,x2=points[0][0],points[0][1]
+#         while(i<len(points)):
+#             if x2>=points[i][0]:
+#                 x1=max(x1,points[i][0])
+#                 x2=min(x2,points[i][1])
+#             else:
+#                 count+=1
+#                 x1,x2=points[i][0],points[i][1]
+#             i+=1
+#         return count+1
+    
+
+            
