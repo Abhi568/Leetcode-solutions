@@ -1,0 +1,43 @@
+import math
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        
+        def isPossible_k(k):
+            hours=0
+            for pile in piles:
+                hours=hours+math.ceil(pile/k)
+            return hours<=h
+        
+        l=1
+        r=max(piles)
+        k_value=0
+        while(l<=r):
+            mid=(l+r)//2
+            if isPossible_k(mid):
+                k_value=mid
+                r=mid-1
+                
+            else:
+                l=mid+1
+                
+        return (k_value%(10**9+7))
+                
+#          [3,6,7,11], h = 8
+#           1 2 3 4 5 6 7 8
+#         8==8
+            
+#             1  2  3  4  5  6  7  8
+#           3(4) 4  2  4 3(4) 4 4  3(4)
+        
+        
+#         1                          11
+#         l=1
+#         r=max(piles)
+#         1 2 3 4 5 6 7 8 9 10 11
+#         l     r
+#         times<=h
+#         right=mid-1
+        
+        
+            
+            
