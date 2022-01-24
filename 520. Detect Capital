@@ -1,0 +1,17 @@
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        cc,csc,sc=0,0,0
+        if ord(word[0])>=65 and ord(word[0])<=90:
+            cc+=1
+            csc+=1
+        else:
+            sc+=1
+        for i in range(1,len(word)):
+            if ord(word[i])>=65 and ord(word[i])<=90:
+                cc+=1
+            else:
+                sc+=1
+                csc+=1
+        return len(word)==cc or len(word)==csc or len(word)==sc
+                
+                
