@@ -1,0 +1,50 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+#O(N) Space Complexity
+O(N+M) Tine Complexity
+class Solution:
+    def getAllElements(self, root1: TreeNode, root2: TreeNode) -> List[int]:
+        # (n+m)log(n+m)          i
+        # left, root,right--> [1,2,4]
+        #                     [0,1,3,5,6]
+        #                          j
+        #     0,1,1,2,3,4
+        self.l1,self.l2,self.res=[],[],[]
+        
+        def inorder(root,l):
+            if root==None:
+                return 
+            inorder(root.left,l)
+            l.append(root)
+            inorder(root.right,l)
+            
+        inorder(root1,self.l1)
+        inorder(root2,self.l2)
+        i,j=0,0
+        while(i!=len(self.l1) and j!=len(self.l2)):
+            if self.l1[i].val<self.l2[j].val:
+                self.res.append(self.l1[i].val)
+                i+=1
+            else:
+                self.res.append(self.l2[j].val)
+                j+=1
+        if i!=len(self.l1):
+            self.remainEle(i,self.l1)
+        else:
+            
+            self.remainEle(j,self.l2)
+        return self.res
+    
+    def remainEle(self,k,l):
+        while(k!=len(l)):
+            self.res.append(l[k].val)
+            k+=1
+# O(N+M)
+        
+                
+        
