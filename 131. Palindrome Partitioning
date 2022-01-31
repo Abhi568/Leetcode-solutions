@@ -1,0 +1,22 @@
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        self.res=[]
+        def partitions(s,substr_lst):
+            if not s:
+                self.res.append(substr_lst[:])
+            for i in range(1,len(s)+1):
+                if s[:i]==s[:i][::-1]:
+                    substr_lst.append(s[:i])
+                    partitions(s[i:],substr_lst)
+                    substr_lst.pop()
+            return self.res
+        return partitions(s,[])
+                    
+                
+        
+# "aab"->
+# [a a b]=l
+#  # [a ab]
+# [aa b]=l
+# self.res=[ [a a b],[aa b]]
+        
