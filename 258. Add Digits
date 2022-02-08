@@ -1,0 +1,24 @@
+class Solution:
+    def addDigits(self, n: int) -> int:
+        rem=-1
+        sum1=0
+        while(True):
+            rem=n%10
+            n=n//10
+            sum1=sum1+rem
+            if n==0:
+                if (sum1//10==0):
+                    return sum1
+                else:
+                    n=sum1
+                    sum1=0
+            
+        
+        
+        
+      # n= 567 => 567%10=7 567//10=56 n=56 sum1=7
+      #        56%10=6    56//10=5  n=5   sum1=13
+      #         5%10=5    5//10 =0  n=0   sum1=18  => n=sum1, sum1=0
+      # n=>18   18%10=8           1  n=1   sum1=8
+      #       1%10   1            0  n=0    sum1=>9
+      #   9
