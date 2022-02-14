@@ -1,0 +1,39 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        self.resList=[[]]
+        def subset(i,interList):
+            if i==len(nums):
+                return
+            
+            
+            for j in range(i,len(nums)):
+                interList.append(nums[j])
+                self.resList.append(interList[:])
+                subset(j+1,interList)
+                interList.pop()
+        subset(0,[])
+        return self.resList
+    # [[1],[1,2],[1,2,3],[1,2,3,4],[1,2,4],[1,4],[1,]
+                
+            
+            
+#         [1,2,3,4]
+#         []
+#         [1]
+#         [2]
+#         [3]
+#         [4]
+#         [1,2]
+#         [1,3]
+#         [1,4]
+#         [2,3]
+#         [2,4]
+#         [3,4]
+#         [1,2,3]
+#         [1,3,4]
+        
+#         [1,2,4]
+#         [2,3,4]
+#         [1,2,3,4]
+        
+        
