@@ -1,3 +1,9 @@
+Complexity Analysis
+Time: O(N^T/M) : Let N be length of candidates, T be target value, M be minimum value along candidates
+Space: O(N^T/M : Let N be length of candidates, T be target value, M be minimum value along candidates
+Because every time we may at worst expand N-way tree from certain point. But how do we know the tree's height?
+For example: We have a smallest value 1, and target value 100. So at worst we will have a maximum height which is [1,1,1,...,1] total 100 length. So we can consider T/M
+
 class Solution:
     def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
         nums.sort()
