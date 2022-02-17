@@ -1,0 +1,21 @@
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        self.res=[]
+        def combination(j,midList,sum1):
+            if j>=len(nums):
+                if sum1==target:
+                    self.res.append(midList[:])
+                return
+            for i in range(j,len(nums)):
+                if sum1+nums[i]<=target:
+                    midList.append(nums[i])
+                    combination(i,midList,sum1+nums[i])
+                    midList.pop()
+                else:
+                    if sum1==target:
+                        self.res.append(midList[:])
+                    return
+        
+        combination(0,[],0)
+        return self.res
