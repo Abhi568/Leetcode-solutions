@@ -1,0 +1,27 @@
+
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        stack=path.split("/")
+        i=0
+        while(i<len(stack)):
+            if stack[i]=="..":
+                stack.pop(i)
+                if i-1>=0:
+                    stack.pop(i-1)
+                    i-=1
+            elif stack[i]=="." or stack[i]=="" :
+                stack.pop(i)
+            else:
+                i+=1
+        return "/"+"/".join(stack)
+                
+            
+            # ".." cuu , pre
+            # "."curr
+            # ""curr
+#         /home/home1/home2/..//hom3
+#         [home,home1,home3]
+        
+#         /home/home1/hom3
+
+        
