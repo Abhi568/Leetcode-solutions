@@ -1,0 +1,17 @@
+class Solution:
+    def removeOuterParentheses(self, s: str) -> str:
+        openBrackes = 0
+        closeBrackes = 0
+        sIndex = 0
+        innerBrackesString = ""
+        for index in range(len(s)):
+            if s[index] == '(':
+                openBrackes += 1
+            else:
+                closeBrackes += 1
+            if openBrackes == closeBrackes:
+                innerBrackesString = innerBrackesString + s[sIndex+1:index]
+                sIndex = index+1
+                openBrackes = 0
+                closeBrackes = 0
+        return innerBrackesString
