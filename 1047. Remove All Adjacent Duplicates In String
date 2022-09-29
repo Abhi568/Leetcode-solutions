@@ -1,0 +1,12 @@
+class Solution:
+    def removeDuplicates(self, s: str) -> str:
+        stack = []
+        for index in range(len(s)):
+            ele = ""
+            while(stack!=[] and stack[-1] == s[index]):
+                ele = stack.pop()
+            if ele != s[index]:
+                stack.append(s[index])
+        return "".join(stack)
+    
+    
