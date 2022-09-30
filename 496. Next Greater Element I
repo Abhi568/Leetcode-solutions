@@ -1,0 +1,16 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        d={}
+        stack = []
+        res = []
+        for ele in nums2:
+            while(stack!=[] and stack[-1]<ele):
+                d[stack.pop()] = ele
+            stack.append(ele)
+        
+        for ele in nums1:
+            if ele in d:
+                res.append(d[ele])
+            else:
+                res.append(-1)
+        return res
