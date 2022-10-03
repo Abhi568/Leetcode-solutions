@@ -1,0 +1,14 @@
+class Solution:
+    def minOperations(self, logs: List[str]) -> int:
+        i=0
+        folderList = []
+        while(i<len(logs)):
+            if logs[i] == './':
+                pass
+            elif logs[i] == '../':
+                if len(folderList)>0:
+                    folderList.pop()
+            else:
+                folderList.append(logs[i])
+            i+=1
+        return len(folderList)
