@@ -1,0 +1,18 @@
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        s = self.analyizeTheString(s)
+        t = self.analyizeTheString(t)
+        
+        return s==t
+        
+    def analyizeTheString(self,string):
+        stack=[]
+        i=0
+        while(i<len(string)):
+            if stack and string[i] == '#':
+                stack.pop()
+            elif string[i] !='#':
+                stack.append(string[i])
+            i+=1
+        return stack
+        
