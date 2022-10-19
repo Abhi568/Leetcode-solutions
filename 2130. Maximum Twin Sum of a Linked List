@@ -1,0 +1,38 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        slow = head
+        fast  = head.next
+        if slow == None or fast == None:
+            return head
+        while(fast!=None and fast.next!=None):
+            slow =slow.next
+            fast = fast.next.next
+        secondHead = slow.next
+        slow.next = None
+        
+        currPointer = None
+        prePointer =None
+        
+        while(secondHead!=None):
+            prePointer = currPointer
+            currPointer  = secondHead
+            secondHead = secondHead.next
+            currPointer.next = prePointer
+            # print(currPointer)
+        
+        max1 = float('-inf')
+        while(head!=None and currPointer!=None):
+            max1 =max(max1,head.val+currPointer.val)
+            currPointer =currPointer.next
+            head = head.next
+        return max1
+        # 1->2 
+        # h
+        # 3<-4
+        # cp
+  
