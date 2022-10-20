@@ -1,0 +1,78 @@
+
+------> TRAVERSAL <-------
+#        In  => LNR
+#        pre => Node Left Right
+#        Post => LRN
+
+
+1) Solution In O(N2)
+#          l       c   r=len(arr)-1
+#         [8,5,1,7,10,12]
+#                  8
+#             L<8        R>8
+# l=arr[l+1:c]=>[5,1,7]  arr[c:r+1] =>[10,12]
+#             5             10
+#     L<5                    R>10 (l=c+1)
+# [1]    [7]            []       [12]
+
+
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
+        def preOrder(l,r):
+#             if l>r:
+#                 return None
+#             Node = TreeNode(preorder[l])
+#             if  l == r:
+#                 return Node
+#             nextPointer = l+1
+#             while(nextPointer<=r and preorder[l]>preorder[nextPointer]):
+#                 nextPointer = nextPointer + 1
+            
+#             Node.left=preOrder(l+1,nextPointer-1)
+#             Node.right=preOrder(nextPointer,r)
+#             return Node
+            
+#         return preOrder(0,len(preorder)-1)
+
+
+2) solution in O( NLOG(N))
+#         2) NLOG(N)
+# preOrder=> [8,5,1,7,10,12] -> Sorting of preOrder will gove you inOrder Traversal 
+
+# inOrder => [1,5,7,8,10,12]
+Now Construct the bst wth the help of both of them.
+
+
+3) Solution In O(N)
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
+        self.idx = 0
+        def preOrder(parentNode):
+            if self.idx == len(preorder) or preorder[self.idx]> parentNode:
+                return None
+            currNode= preorder[self.idx]
+            node = TreeNode(currNode)
+            self.idx+=1
+            node.left = preOrder(currNode)
+            node.right = preOrder(parentNode)
+            return node
+        return preOrder(float('inf'))
+        
+        
+        
+
+        
+
+        
+        
+
