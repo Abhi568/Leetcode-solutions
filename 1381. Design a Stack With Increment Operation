@@ -1,0 +1,61 @@
+1) --> Every opertaion in O(1) solution:
+so for N element total, Time Complexity : O(N)
+                        Space Complexity : O(N)
+class CustomStack:
+
+    def __init__(self, maxSize: int):
+        self.maxSize  =maxSize
+        self.s =[]
+        self.incrArray = []
+
+    def push(self, x: int) -> None:
+        if len(self.s)<self.maxSize:
+            self.s.append(x)
+            self.incrArray.append(0)
+
+    def pop(self) -> int:
+        if self.s!=[]:
+            i=len(self.s)-1
+            if len(self.s) == []:
+                return -1
+            elif i-1>=0:
+                self.incrArray[i-1] += self.incrArray[i]
+            return self.s.pop() + self.incrArray.pop()
+        return -1
+        
+
+    def increment(self, k: int, val: int) -> None:
+        if self.incrArray != []:
+            self.incrArray[min(k,len(self.s))-1] += val
+
+
+2) --> Every opertaion in O(N) solution:
+so for N element total, Time Complexity : O(N^2)
+                        Space Complexity : O(N)
+           
+class CustomStack:
+
+    def __init__(self, maxSize: int):
+        self.maxSize=maxSize
+        self.s=[]
+        
+
+    def push(self, x: int) -> None:
+        if self.maxSize>len(self.s):
+            self.s.append(x)
+        
+
+    def pop(self) -> int:
+        if len(self.s)>=1:
+            return self.s.pop(-1)
+        else:
+            return -1
+
+    def increment(self, k: int, val: int) -> None:
+        if len(self.s)>=k:
+            for i in range(k):
+                self.s[i]=self.s[i]+val
+        else:
+            for i in range(len(self.s)):
+                self.s[i]=self.s[i]+val
+            
