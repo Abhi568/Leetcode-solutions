@@ -1,0 +1,46 @@
+1) Solution-:> O(N) TC and O(N) SC
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+         stack = []
+         for i in s:
+             if i == '(':
+                 stack.append(i)
+             elif i ==')':
+                 if stack!=[] and stack[-1]=='(':
+                     stack.pop(-1)
+                 else:
+                     stack.append(i)
+         return len(stack)
+
+
+
+2) Solution:-> O(N) TC and O(1) SC
+#         ()))()(((
+#         100010123
+#         count=-1
+#         minNeededPar+=count=-1-> -1+(-1) =-2
+#         count=0
+        
+#         ans =  abs(minNeededPar) + count = 2+3=5
+#         (((())))
+#         12343210
+#         count=0
+
+
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:        
+        count=0
+        minNeededPar=0
+        for i in s:
+            if i=='(':
+                count+=1
+            else:
+                count-=1
+                if count<0:
+                    minNeededPar += count
+                    count=0
+        return abs(minNeededPar)+count
+        
+
+        
+        
