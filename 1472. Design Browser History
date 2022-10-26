@@ -1,0 +1,38 @@
+class BrowserHistory:
+
+    def __init__(self, homepage: str):
+        self.d={}
+        self.count = 1
+        self.d[self.count] = homepage
+        self.maxValue = 0
+
+    def visit(self, url: str) -> None:
+        self.count+=1
+        self.d[self.count] = url
+        self.maxValue = self.count
+
+    def back(self, steps: int) -> str:
+        res = self.d[self.count]
+        countOfBackSteps = 0
+        while(self.count>1 and countOfBackSteps<steps):
+            self.count-=1
+            countOfBackSteps += 1
+            res = self.d[self.count]
+        return res
+
+    def forward(self, steps: int) -> str:
+        res = self.d[self.count]
+        countOfForwardSteps = 0
+        while(self.count<len(self.d) and countOfForwardSteps<steps and self.count!=self.maxValue):
+            self.count+=1
+            countOfForwardSteps+=1
+            res = self.d[self.count]
+        return res
+                
+
+
+# Your BrowserHistory object will be instantiated and called as such:
+# obj = BrowserHistory(homepage)
+# obj.visit(url)
+# param_2 = obj.back(steps)
+# param_3 = obj.forward(steps)
