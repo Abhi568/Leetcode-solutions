@@ -1,0 +1,30 @@
+class Solution:
+    def smallestNumber(self, pattern: str) -> str:
+        stack=[]
+        res=""
+        for i in range(len(pattern)+1):
+            stack.append(i+1)
+            # print(i==len(pattern) , i=='I')
+            if i==len(pattern) or pattern[i]=='I':
+                while(stack!=[]):
+                    res = res + str(stack.pop())
+                    # print(res)
+        return res
+        
+#         II->123
+#         DD-> 321
+        
+#         ID-> 132
+#         n[i]>n[i+1]
+        
+
+#      push everytime i+1
+#     stack=>[1,2,3,4]
+#      and pattern[i] it is I  or len(pattern) == i then pop from stack
+#         4321
+
+#    DDD
+# [1,2,3]
+        
+        
+     
