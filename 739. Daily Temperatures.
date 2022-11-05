@@ -1,1 +1,24 @@
 
+TC = O(N)
+SC= O{N}
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        maxTempHold = []
+        i=0
+        temperatures = temperatures[::-1]
+        res = []
+        for i in range(len(temperatures)):
+            while(maxTempHold!=[] and temperatures[i]>=temperatures[maxTempHold[-1]]):
+                maxTempHold.pop()
+            if maxTempHold == []:
+                res.append(0)
+            else:
+                res.append(i-maxTempHold[-1])
+            maxTempHold.append(i)
+        return res[::-1]
+        
+            
+
+
+    
