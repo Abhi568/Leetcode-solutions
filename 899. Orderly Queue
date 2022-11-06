@@ -1,0 +1,11 @@
+class Solution:
+    def orderlyQueue(self, s: str, k: int) -> str:
+        if k>1:
+            return "".join(sorted(s))
+        else:
+            minLegoString = s
+            s1=""
+            for i in range(len(s)):
+                s1 =  s[1:]+s[0:1]
+                minLegoString = min(minLegoString , s)
+        return minLegoString
