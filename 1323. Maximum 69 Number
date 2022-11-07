@@ -1,0 +1,32 @@
+# TC : ON)
+# SC : O(N)
+
+class Solution:
+    def maximum69Number (self, num: int) -> int:
+
+        #1)
+        # numList = list(str(num))
+
+        # for numCounter in range(len(numList)):
+        #     if numList[numCounter] == '6':
+        #         numList[numCounter] = '9'
+        #         break;
+        # return int("".join(numList))
+
+
+        #2
+        # numStr = str(num)
+        # numStr = numStr.replace('6','9',1)
+        # return int(numStr)
+
+
+        #3
+        numList = list(str(num))
+
+        for (numCounter,numValue) in enumerate(numList):
+            if numValue == '6':
+                numList[numCounter] = '9'
+                break;
+        return int("".join(numList))
+
+
