@@ -1,7 +1,11 @@
+TC: O(N^2)
+SC: O(N)
 class Solution:
     def reverseParentheses(self, s: str) -> str:
+    
         stack = []
         i=0
+        
         while(i<len(s)):
             if s[i]!=')':
                 stack.append(s[i])
@@ -12,6 +16,5 @@ class Solution:
                 stack.pop()
                 stack.extend(stackPoppedEle)
             i+=1
-            # print(stack,i)
 
         return "".join(stack)
