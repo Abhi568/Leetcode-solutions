@@ -1,0 +1,25 @@
+class Solution:
+    def scoreOfParentheses(self, s: str) -> int:
+    
+        stack =[]
+        stack.append(s[0])
+        for i in range(1,len(s)):
+            if stack[-1]=='(' and s[i]==')':
+                stack.pop()
+                stack.append(1)
+            elif s[i]==')' and type(stack[-1])==int:
+                value = 0
+                while(stack[-1]!='('):
+                    value = value + stack.pop()
+                stack.pop()
+                value = value *2
+                stack.append(value)
+
+            else:
+                stack.append(s[i])
+
+        value=0
+        for ele in stack:
+            value = value + ele
+
+        return value
