@@ -1,0 +1,16 @@
+TC = SC = O(N)
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        # s = " Hello  word"
+        s = s.strip().split(" ")
+        l1 = []
+        for ele in s[::-1]:
+            if ele == "":
+                pass
+            else:
+                l1.append(ele)
+                l1.append(" ")
+                # l1 = ["word", " ", "Hello"," "]
+                # "word hello"
+        return "".join(l1).strip()
