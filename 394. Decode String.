@@ -1,0 +1,26 @@
+TC = SC = O(M) 
+M is the size of stack
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+
+        stack =[]
+        i =0
+
+        while(i<len(s)):
+            if stack!=[] and s[i]==']':
+                midString = ""
+                number = ""
+                while(stack!=[] and stack[-1]!='['):
+                    midString = stack.pop() + midString
+                stack.pop()
+                while(stack!=[] and stack[-1].isnumeric()):
+                    number = stack.pop() + number
+                
+                finalString =  int(number)*midString
+                stack.append(finalString)
+            else:
+                stack.append(s[i])
+            i+=1
+            # print(stack)
+        return "".join(stack)
