@@ -1,0 +1,55 @@
+TC = SC = O(N)
+
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        seen = set()
+        winOrLooseDict = {}
+
+        for winner , looser in matches:
+            seen.add(winner)
+            seen.add(looser)
+            if looser in winOrLooseDict:
+                winOrLooseDict[looser] += 1
+            else:
+                winOrLooseDict[looser] = 1
+            
+        winnerPlayer, looserPlayer = [], []
+
+        for player in seen:
+            if winOrLooseDict.get(player,0) == 0:
+                winnerPlayer.append(player)
+            elif winOrLooseDict.get(player,0) == 1:
+                looserPlayer.append(player)
+            
+
+        ans = [sorted(winnerPlayer),sorted(looserPlayer)]
+        return ans
+        
+------------------------------------------------
+
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        # zeroLost, oneLost, moreLost = {} ,{} ,{}
+
+        # for winner, looser in matches:
+        #     if winner in oneLost or winner in moreLost:
+        #         pass
+        #     else:
+        #         zeroLost[winner]  = 0
+            
+        #     if looser in zeroLost:
+        #         del zeroLost[looser]
+        #         oneLost[looser] = 1
+        #     elif looser in oneLost:
+        #         del oneLost[looser]
+        #         moreLost[looser] = 2
+        #     elif looser in moreLost:
+        #         pass
+        #     else:
+        #         oneLost[looser] = 1
+
+        # ans = [sorted(list(zeroLost.keys())),sorted(list(oneLost.keys()))]
+        # return ans
+                
+
+
