@@ -1,0 +1,36 @@
+class Solution:
+    def clumsy(self, n: int) -> int:
+        self.stack,self.count = [], 1
+        def call(n):
+            if n<=0:
+                return
+            elif n<3:
+                if self.count == 1:
+                    self.stack.append(n)
+                else:
+                    self.stack.append(1)
+                return
+            if self.count==0:
+                self.stack.append(n)
+                self.count = 1
+                call(n-1)
+                
+            elif self.count==1:
+                self.stack.append(n*(n-1)//(n-2))
+                self.count = 0
+                call(n-3)
+        call(n)
+
+        self.count,self.res = 1, self.stack[0]
+        self.stack.pop(0)
+        def findResult():
+            while(len(self.stack)>0):
+                if self.count == 1:
+                    self.res = self.res + self.stack.pop(0)
+                    self.count = 0
+                else:
+                    self.res = self.res - self.stack.pop(0)
+                    self.count = 1
+        findResult()
+
+        return self.res
