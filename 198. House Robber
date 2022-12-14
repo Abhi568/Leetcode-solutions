@@ -1,0 +1,10 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums)==1:
+            return nums[0]
+        stack = []
+        stack.append(nums[0])
+        stack.append(max(nums[0],nums[1]))
+        for i in range(2,len(nums)):
+            stack.append(max(nums[i]+stack[i-2],stack[i-1]))
+        return stack[-1]
