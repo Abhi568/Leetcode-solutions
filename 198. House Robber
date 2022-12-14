@@ -1,3 +1,5 @@
+TC= SC = O(N)
+
 class Solution:
     def rob(self, nums: List[int]) -> int:
         if len(nums)==1:
