@@ -1,0 +1,14 @@
+class Solution:
+    def mostCompetitive(self, nums: List[int], k: int) -> List[int]:
+        stack = []
+        RE = len(nums)-k
+        for i in range(len(nums)):
+            while(stack!=[] and RE!=0 and stack[-1]>nums[i]):
+                stack.pop()
+                RE-=1
+            stack.append(nums[i])
+            # print(stack)
+        while(RE!=0):
+            stack.pop()
+            RE-=1
+        return stack
