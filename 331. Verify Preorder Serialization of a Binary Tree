@@ -1,0 +1,44 @@
+TC = SC = O(N)
+
+1)
+class Solution:
+    def isValidSerialization(self, preorder: str) -> bool:
+        preorder = preorder.split(',')
+        stack=[]
+        i=0
+        while(i<len(preorder)):
+            stack.append(preorder[i])
+            while(len(stack)>2 and stack[-1]=='#' and stack[-2]=='#' and stack[-3]!='#'):
+                stack.pop()
+                stack.pop()
+                stack.pop()
+                stack.append('#')
+            i+=1
+        return len(stack)==1 and stack[0]=='#'
+
+-----------------------------------------------------------------------------------------------------
+TC = O(N)
+SC = o(1)
+
+2)
+class Solution:
+    def isValidSerialization(self, preorder: str) -> bool:
+        if preorder=='':
+            return True
+        preorder=preorder.split(',')
+        arrow=1;
+        if preorder[0]=='#' and len(preorder)>1:
+            return False
+        for i in preorder:
+            if i!='#' and arrow>0:
+                arrow-=1
+                arrow+=2     
+            else:
+                arrow=arrow-1
+    
+            #if arrow<0:
+            #    return False
+        if arrow==0:
+            return True
+        return False
+        
