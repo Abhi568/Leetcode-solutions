@@ -1,0 +1,18 @@
+TC = O(N)
+SC = O(N)
+
+class Solution:
+    def maxWidthRamp(self, nums: List[int]) -> int:
+        stack =[]
+        width = 0
+        for i in range(len((nums))):
+            if stack == [] or nums[stack[-1]]>nums[i]:
+                stack.append(i)
+            # print(stack)
+        
+        for j in range(len(nums)-1,-1,-1):
+            # print(nums[j],stack,width)
+            while(stack!=[] and nums[stack[-1]]<=nums[j]):
+                width= max(width, j - stack.pop())
+                
+        return width
