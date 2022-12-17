@@ -1,0 +1,33 @@
+TC= SC = O(N)
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack,i = [] ,0
+        while(i<len(tokens)):
+            if tokens[i]!='+'and  tokens[i]!='-' and  tokens[i]!='*'and  tokens[i]!='/': 
+                stack.append( tokens[i])
+            else:
+                self.performOper(stack,tokens[i])
+            # print(stack)
+            i+=1
+        return int(stack[-1])
+
+    def performOper(self,stack,operator):
+        ele1 = int(stack.pop())
+        ele2 = int(stack.pop())
+        ele3 = 0
+        neg1, neg2 = False,False
+        if operator == '+':
+            ele3= ele2 + ele1  
+        if operator == '-':
+            ele3= ele2 - ele1 
+        if operator == '*':
+            ele3= ele2 * ele1 
+        if operator == '/':
+            neg1 = True if ele1<0 else False
+            neg2 = True if ele2<0 else False
+            ele3 = abs(ele2) // abs(ele1) 
+            if neg1==True and neg2!=True or neg1!=True and neg2==True:
+                ele3 = -ele3
+        stack.append(ele3)
+
