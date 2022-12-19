@@ -1,0 +1,41 @@
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        self.d={}
+        self.visited = [False]*n
+        def search(source):
+            self.visited[source] = True
+            if source == destination:
+                return True
+            
+            for newEdge in self.d[source]:
+                if self.visited[newEdge]==False and search(newEdge):
+                    return True
+            return False
+
+        for i in edges:
+            if i[0] in self.d:
+                self.d[i[0]].append(i[1])
+            else:
+                self.d[i[0]] = [i[1]]
+            if i[1] in self.d:
+                self.d[i[1]].append(i[0])
+            else:
+                self.d[i[1]] = [i[0]]
+        
+        return search(source)
+
+        # d[0] = [1,2]
+        # d[1] = [0]
+        # d[2] = [0,3]
+        # d[3] = [5,4]
+        # d[4] = [3,5]
+        # d[5] = [3,4]
+
+        # v = [t t t t t]
+        
+        # # d[0] =[1,2]
+        # # d[1] = [0,2]
+        # # d[2] = [0,1]
+        # # v = [T, T, T]
+
+        
