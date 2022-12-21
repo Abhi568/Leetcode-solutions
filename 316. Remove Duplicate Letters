@@ -1,0 +1,18 @@
+ST = TC = O(N)
+
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        visited = {}
+        stack= []
+        occ = {}
+
+        for i in range(len(s)):
+            occ[s[i]] = i
+        
+        for i in range(len(s)):
+            if s[i] not in visited:
+                while(stack and stack[-1]>s[i] and i<occ[stack[-1]]):
+                    del visited[stack.pop()]
+                stack.append(s[i])
+                visited[s[i]] = i
+        return "".join(stack)
