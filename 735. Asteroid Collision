@@ -1,0 +1,23 @@
+TC = SC = O(N)
+
+class Solution:
+    def asteroidCollision(self, a: List[int]) -> List[int]:
+        stack =[]
+        find = False
+        for i in range(len(a)-1,-1,-1):
+            find = False
+            while(stack and stack[-1]<0 and a[i]>0):
+                if abs(stack[-1])>=a[i]:
+                    find = True
+                    if abs(stack[-1])==a[i]:
+                        stack.pop()
+                    break
+                else:
+                    stack.pop()
+                
+            if find== False:
+                stack.append(a[i])
+                print(stack)
+        return stack[::-1]
+
+        
